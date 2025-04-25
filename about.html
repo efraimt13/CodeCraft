@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="About CodeCraft - Our Mission & Team">
+  <meta name="description" content="Learn about CodeCraft’s mission to craft futuristic websites and meet our innovative team.">
+  <meta name="keywords" content="about CodeCraft, web development team, cyberpunk design">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="CodeCraft">
+  <link rel="canonical" href="https://codecraft.example/about.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://codecraft.example/about.html">
+  <meta property="og:title" content="About CodeCraft - Our Mission & Team">
+  <meta property="og:description" content="Learn about CodeCraft’s mission to craft futuristic websites and meet our innovative team.">
+  <meta property="og:image" content="https://codecraft.example/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://codecraft.example/about.html">
+  <meta name="twitter:title" content="About CodeCraft - Our Mission & Team">
+  <meta name="twitter:description" content="Learn about CodeCraft’s mission to craft futuristic websites and meet our innovative team.">
+  <meta name="twitter:image" content="https://codecraft.example/og-image.jpg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <title>About CodeCraft - Our Mission & Team</title>
+  <script src="https://kit.fontawesome.com/66e3b24af0.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #CCCCCC;
+      background: #0B0B0B;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      padding: 1rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(11, 11, 11, 0.95);
+      z-index: 1000;
+      transition: box-shadow 0.3s ease;
+    }
+
+    header.scrolled {
+      box-shadow: 0 2px 10px rgba(0, 231, 255, 0.15);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #FFFFFF;
+    }
+
+    .logo i {
+      margin-right: 0.5rem;
+      font-size: 2rem;
+      background: linear-gradient(45deg, #00E7FF, #FF1A5E);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover i {
+      transform: scale(1.1);
+    }
+
+    nav {
+      display: flex;
+      gap: 1.8rem;
+    }
+
+    nav a {
+      color: #CCCCCC;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00E7FF;
+      text-shadow: 0 0 8px rgba(0, 231, 255, 0.4);
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      color: #FFFFFF;
+      cursor: pointer;
+      transition: transform 0.4s ease, color 0.4s ease;
+      z-index: 1002;
+    }
+
+    .hamburger.active {
+      transform: rotateY(360deg);
+      color: #FF1A5E;
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 4.5rem;
+      right: -100%;
+      width: 100%;
+      height: calc(100% - 4.5rem);
+      background: rgba(11, 11, 11, 0.9);
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .mobile-nav.active {
+      right: 0;
+    }
+
+    .mobile-nav a {
+      color: #FFFFFF;
+      font-size: 1.8rem;
+      font-family: 'Poppins', sans-serif;
+      margin: 1.5rem 0;
+      text-decoration: none;
+      position: relative;
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.4s ease, transform 0.4s ease, text-shadow 0.3s ease;
+    }
+
+    .mobile-nav.active a {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .mobile-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #00E7FF;
+      transition: width 0.3s ease;
+    }
+
+    .mobile-nav a:hover::after {
+      width: 100%;
+    }
+
+    .mobile-nav a:hover {
+      color: #00E7FF;
+      text-shadow: 0 0 12px rgba(0, 231, 255, 0.6);
+    }
+
+    .mobile-nav a:nth-child(1) { transition-delay: 0.1s; }
+    .mobile-nav a:nth-child(2) { transition-delay: 0.2s; }
+    .mobile-nav a:nth-child(3) { transition-delay: 0.3s; }
+    .mobile-nav a:nth-child(4) { transition-delay: 0.4s; }
+    .mobile-nav a:nth-child(5) { transition-delay: 0.5s; }
+
+    .about-hero {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: #0B0B0B;
+      color: #FFFFFF;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0.8;
+    }
+
+    .about-hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 4rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      z-index: 2;
+      color: #FFFFFF;
+      text-shadow: 0 0 15px rgba(0, 231, 255, 0.7);
+    }
+
+    .about-hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin-bottom: 2rem;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #00E7FF, #FF1A5E);
+      color: #FFFFFF;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.3s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 231, 255, 0.4);
+      animation: pulse-btn 1s infinite;
+    }
+
+    section {
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #FFFFFF;
+      text-shadow: 0 0 10px rgba(0, 231, 255, 0.3);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .team-member {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid rgba(0, 231, 255, 0.15);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .team-member:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 20px rgba(0, 231, 255, 0.3);
+    }
+
+    .team-member img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      border: 2px solid #00E7FF;
+    }
+
+    .team-member h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.4rem;
+      color: #FFFFFF;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-member p {
+      font-size: 0.95rem;
+      color: #39FF14;
+    }
+
+    footer {
+      background: #0B0B0B;
+      color: #CCCCCC;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(0, 231, 255, 0.15);
+    }
+
+    .custom-cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      border: 2px solid #00E7FF;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1000;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      opacity: 0.5;
+    }
+
+    .custom-cursor.click {
+      transform: scale(1.2);
+      opacity: 1;
+      border-color: #FF1A5E;
+    }
+
+    @keyframes pulse-btn {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-item {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .animate-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .about-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .about-hero p {
+        font-size: 1rem;
+      }
+
+      section {
+        padding: 3.5rem 1rem;
+      }
+
+      h2 {
+        font-size: 2.2rem;
+      }
+
+      .btn {
+        padding: 0.7rem 1.8rem;
+        font-size: 1rem;
+      }
+
+      .custom-cursor {
+        display: none;
+      }
+
+      .about-canvas {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .about-hero h1 {
+        font-size: 2rem;
+      }
+
+      .about-hero p {
+        font-size: 0.9rem;
+      }
+
+      .team-member {
+        padding: 1rem;
+      }
+
+      .team-member img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    @supports not (backdrop-filter: blur(8px)) {
+      .mobile-nav {
+        background: rgba(11, 11, 11, 0.95);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" aria-label="CodeCraft logo">
+      <i class="fa-solid fa-rocket"></i>
+      CodeCraft
+    </div>
+    <nav aria-label="Main navigation">
+      <a href="index.html#home">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <i class="fa-solid fa-bars-staggered hamburger" aria-label="Open menu" role="button"></i>
+  </header>
+  <div class="mobile-nav" aria-label="Mobile navigation">
+    <a href="index.html#home">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <section class="about-hero">
+    <canvas class="about-canvas"></canvas>
+    <h1>Who We Are</h1>
+    <p>At CodeCraft, we’re pioneers of digital innovation, blending cutting-edge technology with cyberpunk aesthetics to create websites that redefine the future.</p>
+    <a href="contact.html" class="btn">Connect with Us</a>
+  </section>
+  <section id="team">
+    <h2>Our Team</h2>
+    <div class="team-grid">
+      <div class="team-member animate-item">
+        <img src="client1.jpg" alt="Alex Carter">
+        <h3>Alex Carter</h3>
+        <p>Lead Developer</p>
+      </div>
+      <div class="team-member animate-item">
+        <img src="client2.jpg" alt="Luna Hayes">
+        <h3>Luna Hayes</h3>
+        <p>Creative Director</p>
+      </div>
+      <div class="team-member animate-item">
+        <img src="client3.jpg" alt="Kai Patel">
+        <h3>Kai Patel</h3>
+        <p>UX Specialist</p>
+      </div>
+      <div class="team-member animate-item">
+        <img src="client4.jpg" alt="Zoe Quinn">
+        <h3>Zoe Quinn</h3>
+        <p>Project Manager</p>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <p>© 2025 CodeCraft. Built for the future. | <a href="privacy.html">Privacy Policy</a></p>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.querySelector('.hamburger');
+      const mobileNav = document.querySelector('.mobile-nav');
+      const header = document.querySelector('header');
+
+      // Mobile menu toggle
+      hamburger.addEventListener('click', () => {
+        const isActive = mobileNav.classList.toggle('active');
+        hamburger.classList.toggle('active');
+        hamburger.classList.toggle('fa-bars-staggered');
+        hamburger.classList.toggle('fa-xmark');
+        hamburger.setAttribute('aria-label', isActive ? 'Close menu' : 'Open menu');
+      });
+
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('active');
+          hamburger.classList.remove('active');
+          hamburger.classList.remove('fa-xmark');
+          hamburger.classList.add('fa-bars-staggered');
+          hamburger.setAttribute('aria-label', 'Open menu');
+        });
+      });
+
+      // Header scroll effect
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+      });
+
+      // GSAP animations for hero
+      gsap.to('.about-hero p', {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: 0.5,
+        ease: 'power2.out',
+      });
+      gsap.to('.about-hero .btn', {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: 0.7,
+        ease: 'power2.out',
+      });
+
+      // 2D neon grid background
+      if (window.innerWidth > 768) {
+        const canvas = document.querySelector('.about-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        function drawGrid() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.strokeStyle = 'rgba(0, 231, 255, 0.2)';
+          ctx.lineWidth = 1;
+
+          for (let x = 0; x < canvas.width; x += 50) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, canvas.height);
+            ctx.stroke();
+          }
+          for (let y = 0; y < canvas.height; y += 50) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(canvas.width, y);
+            ctx.stroke();
+          }
+        }
+        drawGrid();
+
+        window.addEventListener('resize', () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+          drawGrid();
+        });
+      }
+
+      // Team animations
+      const teamMembers = document.querySelectorAll('.team-member');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, index * 100);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      teamMembers.forEach(member => observer.observe(member));
+
+      // Custom cursor
+      if (window.innerWidth > 768) {
+        const cursor = document.createElement('div');
+        cursor.className = 'custom-cursor';
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+          cursor.style.left = `${e.clientX - 6}px`;
+          cursor.style.top = `${e.clientY - 6}px`;
+        });
+
+        document.addEventListener('click', () => {
+          cursor.classList.add('click');
+          setTimeout(() => {
+            cursor.classList.remove('click');
+          }, 150);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
