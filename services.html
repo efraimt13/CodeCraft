@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="title" content="CodeCraft Services - Hack the Matrix">
+  <meta name="description" content="Swipe through CodeCraft’s cutting-edge web development, design, support, and launch services in a cyberpunk matrix.">
+  <meta name="keywords" content="web development, web design, website support, website launch, cyberpunk web services, CodeCraft, mobile web solutions">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="CodeCraft">
+  <link rel="canonical" href="https://codecraft.example/services.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://codecraft.example/services.html">
+  <meta property="og:title" content="CodeCraft Services - Hack the Matrix">
+  <meta property="og:description" content="Swipe through CodeCraft’s cutting-edge web development, design, support, and launch services in a cyberpunk matrix.">
+  <meta property="og:image" content="https://codecraft.example/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://codecraft.example/services.html">
+  <meta name="twitter:title" content="CodeCraft Services - Hack the Matrix">
+  <meta name="twitter:description" content="Swipe through CodeCraft’s cutting-edge web development, design, support, and launch services in a cyberpunk matrix.">
+  <meta name="twitter:image" content="https://codecraft.example/og-image.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Web Development and Design",
+    "provider": {
+      "@type": "Organization",
+      "name": "CodeCraft",
+      "url": "https://codecraft.example"
+    },
+    "description": "CodeCraft offers mobile-first web development, design, support, and launch services in a cyberpunk matrix interface.",
+    "offers": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Precision Development"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Futuristic Design"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Reliable Support"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Rapid Launch"}}
+    ]
+  }
+  </script>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <title>CodeCraft Services - Hack the Matrix</title>
+  <script src="https://kit.fontawesome.com/66e3b24af0.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  <link href="https://unpkg.com/swiper@8/swiper-bundle.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #CCCCCC;
+      background: #0B0B0B;
+      line-height: 1.6;
+      overflow-x: hidden;
+      touch-action: manipulation;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(11, 11, 11, 0.95);
+      z-index: 1000;
+      transition: box-shadow 0.3s ease;
+    }
+
+    header.scrolled {
+      box-shadow: 0 2px 8px rgba(0, 231, 255, 0.15);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #FFFFFF;
+    }
+
+    .logo i {
+      margin-right: 0.4rem;
+      font-size: 1.6rem;
+      background: linear-gradient(45deg, #00E7FF, #FF1A5E);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .logo:active i {
+      transform: scale(0.95);
+    }
+
+    nav {
+      display: none;
+    }
+
+    .hamburger {
+      font-size: 1.5rem;
+      color: #FFFFFF;
+      cursor: pointer;
+      transition: transform 0.4s ease, color 0.4s ease;
+      z-index: 1002;
+    }
+
+    .hamburger.active {
+      transform: rotateY(360deg);
+      color: #FF1A5E;
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 3.5rem;
+      right: -100%;
+      width: 100%;
+      height: calc(100% - 3.5rem);
+      background: rgba(11, 11, 11, 0.9);
+      backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .mobile-nav.active {
+      right: 0;
+    }
+
+    .mobile-nav a {
+      color: #FFFFFF;
+      font-size: 1.6rem;
+      font-family: 'Poppins', sans-serif;
+      margin: 1.2rem 0;
+      text-decoration: none;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease, text-shadow 0.3s ease;
+    }
+
+    .mobile-nav.active a {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .mobile-nav a:active {
+      color: #00E7FF;
+      text-shadow: 0 0 10px rgba(0, 231, 255, 0.6);
+    }
+
+    .mobile-nav a:nth-child(1) { transition-delay: 0.1s; }
+    .mobile-nav a:nth-child(2) { transition-delay: 0.2s; }
+    .mobile-nav a:nth-child(3) { transition-delay: 0.3s; }
+    .mobile-nav a:nth-child(4) { transition-delay: 0.4s; }
+    .mobile-nav a:nth-child(5) { transition-delay: 0.5s; }
+
+    .services-hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: #0B0B0B;
+      color: #FFFFFF;
+      padding: 2rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .matrix-rain {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0.4;
+    }
+
+    .services-hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      z-index: 2;
+      color: #FFFFFF;
+      text-shadow: 0 0 12px rgba(0, 231, 255, 0.7);
+      position: relative;
+      opacity: 0;
+    }
+
+    .services-hero h1::before, .services-hero h1::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #FF1A5E;
+      opacity: 0;
+      z-index: -1;
+    }
+
+    .services-hero h1::before {
+      animation: glitch-top 2s infinite;
+    }
+
+    .services-hero h1::after {
+      animation: glitch-bottom 2s infinite;
+    }
+
+    .services-hero p {
+      font-size: 1rem;
+      max-width: 90%;
+      margin-bottom: 2rem;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #00E7FF, #FF1A5E);
+      color: #FFFFFF;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      z-index: 2;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.95);
+      box-shadow: 0 0 15px rgba(0, 231, 255, 0.5);
+    }
+
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: #00E7FF;
+      z-index: 1000;
+      transition: width 0.2s ease;
+      box-shadow: 0 0 10px rgba(0, 231, 255, 0.5);
+    }
+
+    section {
+      padding: 4rem 1rem;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #FFFFFF;
+      text-shadow: 0 0 10px rgba(0, 231, 255, 0.4);
+    }
+
+    .swiper {
+      width: 100%;
+      padding: 0 1rem;
+    }
+
+    .swiper-slide {
+      background: linear-gradient(135deg, rgba(0, 231, 255, 0.1), rgba(255, 26, 94, 0.1));
+      padding: 1.5rem;
+      border-radius: 15px;
+      text-align: center;
+      border: 2px solid rgba(0, 231, 255, 0.2);
+      backdrop-filter: blur(5px);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .swiper-slide:active {
+      border-color: #00E7FF;
+      box-shadow: 0 0 20px rgba(0, 231, 255, 0.4);
+    }
+
+    .swiper-slide i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #39FF14;
+      transition: transform 0.3s ease;
+    }
+
+    .swiper-slide:active i {
+      transform: scale(1.1);
+    }
+
+    .swiper-slide h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      color: #FFFFFF;
+      margin-bottom: 0.8rem;
+    }
+
+    .swiper-slide p {
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .service-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: rgba(11, 11, 11, 0.95);
+      padding: 2rem;
+      border-radius: 15px;
+      border: 2px solid #00E7FF;
+      z-index: 1001;
+      max-width: 90%;
+      text-align: center;
+      transition: transform 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .service-modal.active {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .service-modal h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.8rem;
+      color: #FFFFFF;
+      margin-bottom: 1rem;
+    }
+
+    .service-modal p {
+      font-size: 0.9rem;
+      color: #39FF14;
+      margin: 0.5rem 0;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.2rem;
+      color: #FF1A5E;
+      cursor: pointer;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    footer {
+      background: #0B0B0B;
+      color: #CCCCCC;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(0, 231, 255, 0.15);
+    }
+
+    .social-icons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-icons a {
+      color: #CCCCCC;
+      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid #00E7FF;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .social-icons a:active {
+      transform: scale(0.95);
+      box-shadow: 0 0 10px rgba(0, 231, 255, 0.5);
+    }
+
+    .team-marquee {
+      margin-top: 1.5rem;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .team-marquee span {
+      display: inline-block;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      color: #FFFFFF;
+      padding: 0 1.5rem;
+      animation: marquee 15s linear infinite;
+    }
+
+    .accessibility-toggle {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      z-index: 1000;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .accessibility-toggle button {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #00E7FF;
+      color: #FFFFFF;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .accessibility-toggle button:active {
+      background: #00E7FF;
+      color: #0B0B0B;
+    }
+
+    .matrix-mode {
+      filter: url(#crt-filter);
+      background: #000000;
+    }
+
+    .matrix-mode .swiper-slide, .matrix-mode footer {
+      background: #000000;
+      border-color: #39FF14;
+    }
+
+    .matrix-mode .swiper-slide h3, .matrix-mode .swiper-slide p {
+      font-family: 'Courier New', monospace;
+      color: #39FF14;
+      text-shadow: 0 0 5px #39FF14;
+    }
+
+    .high-contrast .swiper-slide, .high-contrast footer {
+      background: #000000;
+      color: #FFFFFF;
+      border-color: #FFFFFF;
+    }
+
+    .high-contrast .btn {
+      background: #FFFFFF;
+      color: #000000;
+    }
+
+    @keyframes glitch-top {
+      0% { opacity: 0; transform: translate(0, 0); }
+      20% { opacity: 0.8; transform: translate(2px, -2px); }
+      40% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes glitch-bottom {
+      0% { opacity: 0; transform: translate(0, 0); }
+      20% { opacity: 0.8; transform: translate(-2px, 2px); }
+      40% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .animate-item {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .animate-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 768px) {
+      header {
+        padding: 1rem 2.5rem;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+      }
+
+      .logo i {
+        font-size: 2rem;
+      }
+
+      nav {
+        display: flex;
+        gap: 1.8rem;
+      }
+
+      nav a {
+        color: #CCCCCC;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+      }
+
+      nav a:hover {
+        color: #00E7FF;
+        text-shadow: 0 0 8px rgba(0, 231, 255, 0.4);
+      }
+
+      .hamburger {
+        display: none;
+      }
+
+      .services-hero {
+        min-height: 100vh;
+        padding: 3rem 2rem;
+      }
+
+      .services-hero h1 {
+        font-size: 4.5rem;
+      }
+
+      .services-hero p {
+        font-size: 1.3rem;
+        max-width: 800px;
+      }
+
+      .btn {
+        padding: 1rem 2.5rem;
+        font-size: 1.2rem;
+      }
+
+      section {
+        padding: 6rem 2rem;
+        max-width: 1400px;
+      }
+
+      h2 {
+        font-size: 3.5rem;
+      }
+
+      .swiper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 0;
+      }
+
+      .swiper-slide {
+        perspective: 1000px;
+        transform-style: preserve-3d;
+        position: relative;
+      }
+
+      .swiper-slide:hover {
+        transform: rotateY(180deg);
+        box-shadow: 0 0 30px rgba(0, 231, 255, 0.5);
+      }
+
+      .swiper-slide .front, .swiper-slide .back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        transition: transform 0.5s ease;
+      }
+
+      .swiper-slide .back {
+        transform: rotateY(180deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5rem;
+      }
+
+      .swiper-slide i {
+        font-size: 3.5rem;
+      }
+
+      .swiper-slide h3 {
+        font-size: 1.8rem;
+      }
+
+      .swiper-slide p {
+        font-size: 0.95rem;
+      }
+
+      .service-stats {
+        margin-bottom: 1.5rem;
+      }
+
+      .service-stats p {
+        font-size: 0.9rem;
+        color: #39FF14;
+        margin: 0.5rem 0;
+      }
+
+      .social-icons {
+        flex-direction: row;
+        gap: 1.5rem;
+      }
+
+      .accessibility-toggle {
+        bottom: 2rem;
+        right: 2rem;
+        gap: 1rem;
+      }
+
+      .accessibility-toggle button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    @supports not (backdrop-filter: blur(8px)) {
+      .mobile-nav, .swiper-slide, .service-modal {
+        background: rgba(11, 11, 11, 0.95);
+      }
+    }
+  </style>
+</head>
+<body>
+  <svg style="display: none;">
+    <filter id="crt-filter">
+      <feColorMatrix type="matrix" values="0.2 0 0 0 0 0 0.8 0 0 0 0 0 0.2 0 0 0 0 0 1 0"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feOffset dx="0" dy="1" result="offsetblur"/>
+      <feFlood flood-color="#39FF14" flood-opacity="0.3"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+  </svg>
+  <div class="progress-bar"></div>
+  <header>
+    <div class="logo" aria-label="CodeCraft logo">
+      <i class="fa-solid fa-rocket"></i>
+      CodeCraft
+    </div>
+    <nav aria-label="Main navigation">
+      <a href="index.html#home">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <i class="fa-solid fa-bars-staggered hamburger" aria-label="Open menu" role="button"></i>
+  </header>
+  <div class="mobile-nav" aria-label="Mobile navigation">
+    <a href="index.html#home">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="index.html#portfolio">Portfolio</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <section class="services-hero">
+    <canvas class="matrix-rain"></canvas>
+    <h1 id="terminal-text" data-text="Our Services"></h1>
+    <p>Enter the digital matrix with CodeCraft’s mobile-first, cyberpunk-powered web solutions.</p>
+    <a href="#services" class="btn">Hack the Matrix</a>
+  </section>
+  <section id="services">
+    <h2>Matrix Core</h2>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide animate-item" data-stats='{"projects": "500+", "satisfaction": "99%"}'>
+          <div class="front">
+            <i class="fa-solid fa-code"></i>
+            <h3>Precision Development</h3>
+            <p>Code scalable, high-speed websites with React, Node.js, and AWS.</p>
+            <a href="index.html#contact" class="btn">Get a Quote</a>
+          </div>
+          <div class="back">
+            <div class="service-stats">
+              <p>500+ Projects Delivered</p>
+              <p>99% Client Satisfaction</p>
+            </div>
+            <a href="index.html#contact" class="btn">Get a Quote</a>
+          </div>
+        </div>
+        <div class="swiper-slide animate-item" data-stats='{"designs": "300+", "ux": "4.8/5"}'>
+          <div class="front">
+            <i class="fa-solid fa-paintbrush"></i>
+            <h3>Futuristic Design</h3>
+            <p>Design immersive visuals with Figma and Tailwind for epic UX.</p>
+            <a href="index.html#contact" class="btn">Get a Quote</a>
+          </div>
+          <div class="back">
+            <div class="service-stats">
+              <p>300+ Unique Designs</p>
+              <p>4.8/5 UX Rating</p>
+            </div>
+            <a href="index.html#contact" class="btn">Get a Quote</a>
+          </div>
+        </div>
+        <div class="swiper-slide animate-item" data-stats='{"uptime": "99.9%", "response": "1 Hour"}'>
+          <div class="front">
+            <i class="fa-solid fa-headset"></i>
+            <h3>Reliable Support</h3>
+            <p>Maintain secure sites with 24/7 monitoring and updates.</p>
+            <a href="index.html#contact" class="btn">Get a Quote</a>
+          </div>
+          <div class="back">
+            <div class="service-stats">
+              <p>99.9% Uptime</p>
+              <p>1-Hour Response Time</p>
+            </div>
+            <a href="index.html#contact" class="btn">Get a Quote</a>
+          </div>
+        </div>
+        <div class="swiper-slide animate-item" data-stats='{"launch": "72 Hours", "success": "100%"}'>
+          <div class="front">
+            <i class="fa-solid fa-rocket"></i>
+            <h3>Rapid Launch</h3>
+            <p>Launch seamlessly with Netlify or Vercel in record time.</p>
+            <a href="index.html#contact" class="btn">Get a Quote</a>
+          </div>
+          <div class="back">
+            <div class="service-stats">
+              <p>72-Hour Launches</p>
+              <p>100% Success Rate</p>
+            </div>
+            <a href="index.html#contact" class="btn">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+  <footer>
+    <p>© 2025 CodeCraft. Built for the future. | <a href="privacy.html">Privacy Policy</a> | <a href="index.html#contact">Contact</a> | <a href="#" id="ar-link">AR Experience</a></p>
+    <div class="social-icons">
+      <a href="https://twitter.com/codecraft" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://linkedin.com/company/codecraft" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://github.com/codecraft" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    </div>
+    <div class="team-marquee">
+      <span>Alex Carter · Luna Hayes · Kai Patel · Zoe Quinn · </span>
+      <span>Alex Carter · Luna Hayes · Kai Patel · Zoe Quinn · </span>
+    </div>
+  </footer>
+  <div class="modal-overlay"></div>
+  <div class="service-modal">
+    <i class="fa-solid fa-xmark modal-close" aria-label="Close modal"></i>
+    <h3></h3>
+    <p class="stat1"></p>
+    <p class="stat2"></p>
+    <a href="index.html#contact" class="btn">Get a Quote</a>
+  </div>
+  <div class="accessibility-toggle">
+    <button id="vibration-toggle">Vibration: On</button>
+    <button id="contrast-toggle">High Contrast</button>
+    <button id="matrix-toggle">Matrix Mode</button>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.querySelector('.hamburger');
+      const mobileNav = document.querySelector('.mobile-nav');
+      const header = document.querySelector('header');
+      const progressBar = document.querySelector('.progress-bar');
+      let vibrationEnabled = true;
+      let logoTaps = 0;
+
+      // Mobile menu toggle
+      hamburger.addEventListener('click', () => {
+        const isActive = mobileNav.classList.toggle('active');
+        hamburger.classList.toggle('active');
+        hamburger.classList.toggle('fa-bars-staggered');
+        hamburger.classList.toggle('fa-xmark');
+        hamburger.setAttribute('aria-label', isActive ? 'Close menu' : 'Open menu');
+      });
+
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('active');
+          hamburger.classList.remove('active');
+          hamburger.classList.remove('fa-xmark');
+          hamburger.classList.add('fa-bars-staggered');
+          hamburger.setAttribute('aria-label', 'Open menu');
+        });
+      });
+
+      // Header scroll effect
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+        const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+        progressBar.style.width = `${scrollPercent}%`;
+      });
+
+      // Terminal typing effect
+      const terminalText = document.getElementById('terminal-text');
+      const text = 'Our Services';
+      let index = 0;
+      function type() {
+        if (index < text.length) {
+          terminalText.textContent += text[index];
+          index++;
+          setTimeout(type, 80);
+        }
+      }
+      setTimeout(type, 300);
+
+      // GSAP animations for hero
+      const tl = gsap.timeline();
+      tl.to('#terminal-text', {
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power2.out',
+      })
+      .to('.services-hero p', {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+      }, '-=0.3')
+      .to('.services-hero .btn', {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+      }, '-=0.3');
+
+      // Matrix rain
+      const canvas = document.querySelector('.matrix-rain');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const chars = '01';
+      const fontSize = 12;
+      const columns = canvas.width / fontSize;
+      const drops = Array(Math.floor(columns)).fill(0);
+
+      function drawMatrix() {
+        ctx.fillStyle = 'rgba(11, 11, 11, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#39FF14';
+        ctx.font = `${fontSize}px monospace`;
+        drops.forEach((y, i) => {
+          const char = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillText(char, i * fontSize, y * fontSize);
+          if (y * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        });
+      }
+
+      if (window.innerWidth <= 768) {
+        setInterval(drawMatrix, 100); // Slower on mobile
+      } else {
+        setInterval(drawMatrix, 50);
+      }
+
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+
+      // Swiper initialization
+      const swiper = new Swiper('.swiper', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          768: {
+            slidesPerView: 'auto',
+            spaceBetween: 30,
+            pagination: { el: null },
+          },
+        },
+      });
+
+      // Service modal
+      const modal = document.querySelector('.service-modal');
+      const modalOverlay = document.querySelector('.modal-overlay');
+      const modalClose = document.querySelector('.modal-close');
+      const slides = document.querySelectorAll('.swiper-slide');
+
+      slides.forEach(slide => {
+        slide.addEventListener('click', () => {
+          if (window.innerWidth <= 768) {
+            const stats = JSON.parse(slide.dataset.stats);
+            modal.querySelector('h3').textContent = slide.querySelector('h3').textContent;
+            modal.querySelector('.stat1').textContent = Object.values(stats)[0];
+            modal.querySelector('.stat2').textContent = Object.values(stats)[1];
+            modal.classList.add('active');
+            modalOverlay.classList.add('active');
+            if (vibrationEnabled && 'vibrate' in navigator) {
+              navigator.vibrate(50);
+            }
+          }
+        });
+      });
+
+      modalClose.addEventListener('click', () => {
+        modal.classList.remove('active');
+        modalOverlay.classList.remove('active');
+      });
+
+      modalOverlay.addEventListener('click', () => {
+        modal.classList.remove('active');
+        modalOverlay.classList.remove('active');
+      });
+
+      // Keyboard navigation for desktop
+      if (window.innerWidth > 768) {
+        slides.forEach(slide => {
+          slide.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+              slide.style.transform = 'rotateY(180deg)';
+              setTimeout(() => {
+                slide.style.transform = 'rotateY(0deg)';
+              }, 1000);
+            }
+          });
+        });
+      }
+
+      // Accessibility toggles
+      const vibrationToggle = document.getElementById('vibration-toggle');
+      const contrastToggle = document.getElementById('contrast-toggle');
+      const matrixToggle = document.getElementById('matrix-toggle');
+
+      vibrationToggle.addEventListener('click', () => {
+        vibrationEnabled = !vibrationEnabled;
+        vibrationToggle.textContent = `Vibration: ${vibrationEnabled ? 'On' : 'Off'}`;
+      });
+
+      contrastToggle.addEventListener('click', () => {
+        document.body.classList.toggle('high-contrast');
+      });
+
+      matrixToggle.addEventListener('click', () => {
+        document.body.classList.toggle('matrix-mode');
+        matrixToggle.textContent = `Matrix Mode: ${document.body.classList.contains('matrix-mode') ? 'On' : 'Off'}`;
+      });
+
+      // Easter egg: Matrix mode
+      document.querySelector('.logo').addEventListener('click', () => {
+        logoTaps++;
+        if (logoTaps >= 3) {
+          document.body.classList.add('matrix-mode');
+          matrixToggle.textContent = 'Matrix Mode: On';
+          logoTaps = 0;
+          if (vibrationEnabled && 'vibrate' in navigator) {
+            navigator.vibrate([100, 50, 100]);
+          }
+        }
+      });
+
+      // Service card animations
+      const animateItems = document.querySelectorAll('.animate-item');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, index * 100);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      animateItems.forEach(item => observer.observe(item));
+
+      // Desktop particles
+      if (window.innerWidth > 768) {
+        slides.forEach(slide => {
+          const canvas = document.createElement('canvas');
+          canvas.className = 'particle-canvas';
+          slide.appendChild(canvas);
+          const ctx = canvas.getContext('2d');
+          canvas.width = slide.offsetWidth;
+          canvas.height = slide.offsetHeight;
+          const particles = [];
+          let active = false;
+
+          class Particle {
+            constructor() {
+              this.x = canvas.width / 2;
+              this.y = canvas.height / 2;
+              this.size = Math.random() * 3 + 1;
+              this.speedX = Math.random() * 3 - 1.5;
+              this.speedY = Math.random() * 3 - 1.5;
+              this.color = Math.random() > 0.5 ? '#00E7FF' : '#FF1A5E';
+              this.life = 20;
+            }
+
+            update() {
+              this.x += this.speedX;
+              this.y += this.speedY;
+              this.life--;
+            }
+
+            draw() {
+              ctx.beginPath();
+              ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+              ctx.fillStyle = this.color;
+              ctx.fill();
+            }
+          }
+
+          function createParticles() {
+            if (active) {
+              for (let i = 0; i < 2; i++) {
+                particles.push(new Particle());
+              }
+            }
+          }
+
+          function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            createParticles();
+            particles.forEach((p, i) => {
+              if (p.life <= 0) {
+                particles.splice(i, 1);
+                return;
+              }
+              p.update();
+              p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+          }
+          animateParticles();
+
+          slide.addEventListener('mouseenter', () => {
+            active = true;
+          });
+
+          slide.addEventListener('mouseleave', () => {
+            active = false;
+          });
+
+          window.addEventListener('resize', () => {
+            canvas.width = slide.offsetWidth;
+            canvas.height = slide.offsetHeight;
+          });
+        });
+
+        // Custom cursor
+        const cursor = document.createElement('div');
+        cursor.className = 'custom-cursor';
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+          cursor.style.left = `${e.clientX - 7.5}px`;
+          cursor.style.top = `${e.clientY - 7.5}px`;
+        });
+
+        document.addEventListener('click', () => {
+          cursor.classList.add('click');
+          setTimeout(() => {
+            cursor.classList.remove('click');
+          }, 150);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
